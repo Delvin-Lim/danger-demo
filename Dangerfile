@@ -11,7 +11,8 @@ failure("PR Labels not added") if github.pr_labels.empty?
 failure("PR size is too large") if git.lines_of_code > 500
 
 # Check 5: Documentation
-warn("Update README") if git.modified_files.any? { |f| f.start_with?("src/") } && !git.modified_files.include?("README.md")
+changed = git.modified_files + git.added_files
+warn("Update README") if changed.any? { |f| f.end_with?(".py") } && !changed.include?("README.md")
 
 # Confirmation
 message "Danger checks completed"
