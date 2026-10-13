@@ -14,4 +14,4 @@ failure("PR size is too large") if git.lines_of_code > 500
 warn("Update README") if git.modified_files.any? { |f| f.start_with?("src/") } && !git.modified_files.include?("README.md")
 
 # Confirmation
-puts "Danger checks completed"
+message "Danger checks completed"
